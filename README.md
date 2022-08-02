@@ -154,3 +154,6 @@ $ yarn add reactstrap
 app/assets/stylesheets/application.scss
 
 @import 'bootstrap';
+
+We can use the before_action :authenticate_user! helper from the Devise API in our controllers to require that a user is signed in before they can use the actions we specify.
+
