@@ -1,0 +1,11 @@
+<h1>Hello, SD Ruby!!!!</h1>
+
+<h2>The Syntactical Astronaut has been talking to the community.</h2>
+
+<ul>
+  <% @topics.each do |topic| %>
+    <li>
+    <%= link_to topic.title, strap_path(topic) %>
+    </li>
+  <% end %>
+</ul>

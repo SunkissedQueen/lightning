@@ -33,12 +33,12 @@ $ rails c
 
 routes
   # Defines the root path route ("/")
-  root "bootstrap_views#index"
+  root "straps#index"
 
-  # get "/bootstrap_views", to: "bootstrap_views#index"
-  # get "/bootstrap_views/:id", to: "bootstrap_views#show"
+  # get "/straps", to: "straps#index"
+  # get "/straps/:id", to: "straps#show"
   # Rails provides a routes method named resources that creates seven different routes in your application, all mapping to the controller:
-  resources :bootstrap_views
+  resources :straps
 
 
 controller
@@ -53,18 +53,18 @@ controller
 view
 
 - Using the resources we can use the helper path for index
-<a href="/bootstrap_views/<%= topic.id %>">  
+<a href="/straps/<%= topic.id %>">  
 
 replace with this line
-<a href="<%= bootstrap_view_path(topic) %>">
+<a href="<%= strap_path(topic) %>">
 
 -Use link_to replace href
-<a href="<%= bootstrap_view_path(topic) %>">
+<a href="<%= strap_path(topic) %>">
   <%= topic.title %>
 </a>  
 
 replace with this line
-<%= link_to topic.title, bootstrap_view_path(topic) %>
+<%= link_to topic.title, strap_path(topic) %>
 
 index
 <h1>Hello, SD Ruby!!!!</h1>
@@ -74,7 +74,7 @@ index
 <ul>
   <% @topics.each do |topic| %>
     <li>
-    <%= link_to topic.title, bootstrap_view_path(topic) %>
+    <%= link_to topic.title, strap_path(topic) %>
     </li>
   <% end %>
 </ul>
