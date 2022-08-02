@@ -33,12 +33,12 @@ $ rails c
 
 routes
   # Defines the root path route ("/")
-  root "bootstrap_views#index"
+  root "straps#index"
 
-  # get "/bootstrap_views", to: "bootstrap_views#index"
-  # get "/bootstrap_views/:id", to: "bootstrap_views#show"
+  # get "/straps", to: "straps#index"
+  # get "/straps/:id", to: "straps#show"
   # Rails provides a routes method named resources that creates seven different routes in your application, all mapping to the controller:
-  resources :bootstrap_views
+  resources :straps
 
 
 controller
@@ -53,18 +53,18 @@ controller
 view
 
 - Using the resources we can use the helper path for index
-<a href="/bootstrap_views/<%= topic.id %>">  
+<a href="/straps/<%= topic.id %>">  
 
 replace with this line
-<a href="<%= bootstrap_view_path(topic) %>">
+<a href="<%= strap_path(topic) %>">
 
 -Use link_to replace href
-<a href="<%= bootstrap_view_path(topic) %>">
+<a href="<%= strap_path(topic) %>">
   <%= topic.title %>
 </a>  
 
 replace with this line
-<%= link_to topic.title, bootstrap_view_path(topic) %>
+<%= link_to topic.title, strap_path(topic) %>
 
 index
 <h1>Hello, SD Ruby!!!!</h1>
@@ -74,7 +74,7 @@ index
 <ul>
   <% @topics.each do |topic| %>
     <li>
-    <%= link_to topic.title, bootstrap_view_path(topic) %>
+    <%= link_to topic.title, strap_path(topic) %>
     </li>
   <% end %>
 </ul>
@@ -119,6 +119,8 @@ end
 
 $ bundle 
 
+HAD TO REMOVE CORS
+
 app to production, you'll want to change the wildcard * to the URL that your frontend app is served from
 
 
@@ -127,3 +129,31 @@ Start by downloading the image file using the link above and save it to the proj
 Add the image to the page using the image_tag helper method by adding the following code to the top of the welcome.html.erb file:
 
  <%= image_tag "quiz-bubble.png", height: 300 %>
+
+
+$ bundle add devise
+$ rails generate devise:install
+$ rails generate devise User
+$ rails db:migrate
+
+config/environments/development.rb
+
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+config/initializers/devise.rb
+
+# Find this line:
+config.sign_out_via = :delete
+# And replace it with this:
+config.sign_out_via = :get
+
+
+$ bundle add bootstrap
+$ mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss
+$ yarn add reactstrap
+app/assets/stylesheets/application.scss
+
+@import 'bootstrap';
+
+We can use the before_action :authenticate_user! helper from the Devise API in our controllers to require that a user is signed in before they can use the actions we specify.
+

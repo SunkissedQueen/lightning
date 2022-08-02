@@ -1,0 +1,52 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @import 'bootstrap';
+
+ 
+ body {
+   background: image-url('craiyon_astro.png') no-repeat center fixed;
+   background-size: cover;
+   text-align: center;
+ }
+ 
+ .logo-link {
+   color: rgba(160, 150, 69, 0.894);
+   text-decoration: none;
+   font-weight: bold;
+   font-size: 300%;
+ }
+ 
+ .nav-button {
+   background-color: rgb(110, 195, 133);
+   border: none;
+   color: rgba(86, 80, 35, 0.894);
+   padding: 7px 14px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   transition-duration: 0.4s;
+   cursor: pointer;
+   border: 2px solid #4CAF50;
+ }
+ 
+ .nav-button:hover {
+   background-color: rgba(177, 169, 103, 0.894);
+   border: 2px solid rgba(160, 150, 69, 0.894);
+   color: black
+ }

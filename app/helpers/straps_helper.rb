@@ -1,0 +1,2 @@
+module StrapsHelper
+end
