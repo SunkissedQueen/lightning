@@ -119,6 +119,8 @@ end
 
 $ bundle 
 
+HAD TO REMOVE CORS
+
 app to production, you'll want to change the wildcard * to the URL that your frontend app is served from
 
 
@@ -127,3 +129,28 @@ Start by downloading the image file using the link above and save it to the proj
 Add the image to the page using the image_tag helper method by adding the following code to the top of the welcome.html.erb file:
 
  <%= image_tag "quiz-bubble.png", height: 300 %>
+
+
+$ bundle add devise
+$ rails generate devise:install
+$ rails generate devise User
+$ rails db:migrate
+
+config/environments/development.rb
+
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+config/initializers/devise.rb
+
+# Find this line:
+config.sign_out_via = :delete
+# And replace it with this:
+config.sign_out_via = :get
+
+
+$ bundle add bootstrap
+$ mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss
+$ yarn add reactstrap
+app/assets/stylesheets/application.scss
+
+@import 'bootstrap';
