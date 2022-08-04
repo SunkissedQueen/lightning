@@ -14,55 +14,54 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">  
 
-    <span>
-    <a class="logo-link" href=<%= root_path %>>
-    <%= image_tag "craiyon_astro.png", height: 30 %>
-        Talking with the Syntactical Astronaut
-      </a>
-    </span>
+        <span>
+        <a class="logo-link" href=<%= root_path %>>
+            Talking with the Syntactical Astronaut
+          </a>
+        </span>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <span style="float:right">
+        <span style="float:right">
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-          <% if user_signed_in? %>
+              <% if user_signed_in? %>
 
-            <li class="nav-item">
-              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class:"nav-button" %>
-            </li> 
+                <li class="nav-item">
+                  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class:"nav-button" %>
+                </li> 
 
-            <li class="nav-item">
-              <%= link_to 'Edit Profile', edit_user_registration_path, class:"nav-button" %>
-            </li>
+                <li class="nav-item">
+                  <%= link_to 'Edit Profile', edit_user_registration_path, class:"nav-button" %>
+                </li>
 
-          <% else %>
-            <li class="nav-item">
-              <%= link_to 'Sign Up', new_user_registration_path, class:"nav-button" %>
-            </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to 'Sign Up', new_user_registration_path, class:"nav-button" %>
+                </li>
 
-            <li class="nav-item">
-              <%= link_to 'Sign In', new_user_session_path, class:"nav-button" %>
-            </li>
-          <% end %>
-
-          </li>
-          </ul>
-        </div>
-      </span>
-
-      </nav>
-      
+                <li class="nav-item">
+                  <%= link_to 'Sign In', new_user_session_path, class:"nav-button" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </span>
+      </div>
+    </nav>
+    <div class="container-fluid">    
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
+    </div>
+    <div class="container-fluid">
       <%= yield %>
-      </div>
-      </body>
+    </div>
+  </body>
 </html>
