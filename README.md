@@ -1,7 +1,8 @@
-Thank you for viewing my application. This is a collection of my recent tech talks. In order to view more details about each topic, you will need to sign-up or log-in.
+Thank you for viewing my application. This is a collection of my recent tech talks. In order to view more details about each topic, you will need to sign-up or log-in.  
 ![Landing page](/app/assets/images/landing.png)
 
 
+* [Description](#description)
 * [Acknowledgements](#acknowledgements)
 * [Project Status](#project-status)
 * [Setup](#create-rails-app)
@@ -9,6 +10,23 @@ Thank you for viewing my application. This is a collection of my recent tech tal
 * [Bootstrap](#bootstrap)
 * [Room for Improvement](#room-for-improvement)
 * [Troubleshooting](#troubleshooting)
+
+## Description
+In its current state, this app demonstrates how to customize devise forms with bootstrap. Devise is a resourceful Ruby Gem that helps with authentication and authorization. It comes prepackaged with various modules:
+- Database Authenticatable: This encrypts and stores a password to the database to validate the authenticity of a user while signing in.
+- Omniauthable: This attaches OmniAuth support to Devise. Users of your application will be able to sign in using accounts such as Facebook, Twitter, and Google.
+- Confirmable: This enables the sending of emails with instructions that will help in the verification of an account.
+- Recoverable: This module helps in times when users forget their password and need to recover it. With this, the user will be able to reset the password.
+- Registerable: This handles the signup of users. It also allows users to edit and delete their accounts.
+### Default signup page
+![Current devise log in](/app/assets/images/log_in.png)
+- Rememberable: This module makes it possible for your application to remember a logged-in user by storing a cookie.
+- Trackable: This module helps track sign-in count, timestamps, and IP address.
+- Timeoutable: This module is responsible for expiring a session that has not been active for a period of time.
+- Validatable: With this module, email and password get to be validated.
+- Lockable: This provides an extra layer of security—when activated, an account can be locked after a given number of failed sign-in attempts.  
+With many template, the styling tends to lack luster. That is actually the beauty of this software, you can customize it with the help of terminal commands and modifying the appropriate files. 
+![Custom page](/app/assets/images/custom.png)
 
 ## Acknowledgements
 [LEARN modifying devise](https://github.com/learn-academy-2022-echo/Syllabus/blob/main/capstone/modifying-devise.md)
@@ -19,10 +37,12 @@ Thank you for viewing my application. This is a collection of my recent tech tal
 
 [RubyGems](https://rubygems.org/)
 
+[Exploring Devise](https://code.tutsplus.com/tutorials/exploring-devise-part-1--cms-26587)
+
 [Astronaut Drawing](https://www.craiyon.com/)
 
 ## Project Status
-- Currently this application showcases how to customize devise forms.
+- Initially this project was created to showcase styling with devise and bootstrap. As with any web development, creativity brought forth an idea to display my recent tech talks. 
 - Still in progress. Plan to add videos for each topic, animation on navigation bar, and test coverage. Ongoing improvements in code base.
 
 ## Create rails app
@@ -147,11 +167,6 @@ config.sign_out_via = :get
   # Update the value to be true:
   config.scoped_views = true
   ```
-
-## Default forms with devise
-![Current devise log in](/app/assets/images/log_in.png)
-![Current devise sign up](/app/assets/images/sign_up.png)
-!()
 
 ## Modifying devise views
   - Add form-group to each class field
