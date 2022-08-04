@@ -1,37 +1,60 @@
-# README
+Thank you for viewing my application. This is a collection of my recent tech talks. In order to view more details about each topic, you will need to sign-up or log-in.
+![Landing page](/app/assets/images/landing.png)
 
- 5285  rails new light_talks -d postgresql -T
- 5286  cd light_talks
- 5287  git remote add origin https://github.com/SunkissedQueen/lightning.git
- 5288  git add .
- 5289  gcmsg "initial commit"
- 5290  git branch -m "main"
- 5291  git push origin main
- 5292  git checkout -b read
- 5293  code .
 
-Create a database: $ rails db:create
-Add the dependencies for RSpec:
-$ bundle add rspec-rails
-$ rails generate rspec:install
-Generate the model with appropriate columns and data types
- 5208  rails generate model Topic title:string body:text
-$ rails db:migrate
-Generate the controller
-  5207  rails generate controller Straps index --skip-routes
-  $ rails generate controller Home
-Begin the rails server: $ rails server
-In a browser navigate to: http://localhost:3000
+* [Acknowledgements](#acknowledgements)
+* [Project Status](#project-status)
+* [Setup](#create-rails-app)
+* [Devise](#adding-devise)
+* [Bootstrap](#bootstrap)
+* [Room for Improvement](#room-for-improvement)
+* [Troubleshooting](#troubleshooting)
 
- 5209  rails db:migrate
+## Acknowledgements
+[LEARN modifying devise](https://github.com/learn-academy-2022-echo/Syllabus/blob/main/capstone/modifying-devise.md)
 
-$ rails c
-> article = Topic.new(title: "Devise Another Point of View", body: "Upon installing the RubyGem devise, developers will have authentication and authorization at their fingertips. Great functionality but the forms are not that appealing. Today we will briefly introduce ways to customize the forms using bootstrap on the devise views.")               
-> article.save
+[Rails tutorial](https://human-se.github.io/rails-demos-n-deets-2020/demo-devise-auth/)
 
+[Deleting a Rails App](https://r3id.medium.com/rails-snippet-delete-db-and-app-cb263d878573)
+
+[RubyGems](https://rubygems.org/)
+
+[Astronaut Drawing](https://www.craiyon.com/)
+
+## Project Status
+- Currently this application showcases how to customize devise forms.
+- Still in progress. Plan to add videos for each topic, animation on navigation bar, and test coverage. Ongoing improvements in code base.
+
+## Create rails app
+- $ rails new light_talks -d postgresql -T
+- $ cd light_talks
+- $ git remote add origin https://github.com/SunkissedQueen/lightning.git
+- $ git add .
+- $ gcmsg "initial commit"
+- $ git branch -m "main"
+- $ git push origin main
+- $ git checkout -b read
+- $ code .
+
+### Database and dependencies
+- Create a database: $ rails db:create
+- Add the dependencies for RSpec: $ bundle add rspec-rails
+- $ rails generate rspec:install
+- Generate the model with appropriate columns and data types: $ rails generate model Topic title:string body:text
+- $ rails db:migrate
+- Generate the controller: $ rails generate controller Straps index --skip-routes
+- Begin the rails server: $ rails server
+- In a browser navigate to: http://localhost:3000
+
+### Add data entries
+- $ rails c  
+> article = Topic.new(title: "Devise Another Point of View", body: "Upon installing the RubyGem devise, developers will have authentication and authorization at their fingertips. Great functionality but the forms are not that appealing. Today we will briefly introduce ways to customize the forms using bootstrap on the devise views.")  
+> article.save  
 > Topic.create(title: "The Power of Accessibility and Creativity: p5.js", body: "Approaching code can be intimidating as a beginner, especially when you see how fast more experienced web developers approach coding challenges. The uncertainty of handling error messages and not having clarity of how to even start can be crushing to the aspirations of a novice coder. The thoughts can often overshadow the excitement of wanting to learn code and prevent creativity. Fortunately, there are supportive, inclusive resources in this community called meetup groups, mentors, bootcamps, webinars, and open-source libraries. I will show you how I re-connected to my excitement with coding through p5.js.") 
 
-routes
+### Setup routes, controllers, views
+```ruby
+  # routes
   # Defines the root path route ("/")
   root "straps#index"
 
@@ -40,8 +63,7 @@ routes
   # Rails provides a routes method named resources that creates seven different routes in your application, all mapping to the controller:
   resources :straps
 
-
-controller
+  # controllers
   def index
     @topics = Topic.all
   end
@@ -50,140 +72,65 @@ controller
     @topic = Topic.find(params[:id])
   end  
 
-view
+  # views
+  # Using the resources we can use the helper path for index
+  # preparing index page to display multiple entries from db
+  <ul>
+    <% @topics.each do |topic| %>
+      <li>
+        <%= link_to topic.title, strap_path(topic) %>
+      </li>
+    <% end %>
+  </ul>
 
-- Using the resources we can use the helper path for index
-<a href="/straps/<%= topic.id %>">  
+  # preparing show page
+  <h2><%= @topic.title %></h2>
 
-replace with this line
-<a href="<%= strap_path(topic) %>">
+  <p><%= @topic.body %></p>
+```
 
--Use link_to replace href
-<a href="<%= strap_path(topic) %>">
-  <%= topic.title %>
-</a>  
-
-replace with this line
-<%= link_to topic.title, strap_path(topic) %>
-
-index
-<h1>Hello, SD Ruby!!!!</h1>
-
-<h2>The Syntactical Astronaut has been talking to the community.</h2>
-
-<ul>
-  <% @topics.each do |topic| %>
-    <li>
-    <%= link_to topic.title, strap_path(topic) %>
-    </li>
-  <% end %>
-</ul>
-
-show
-<h2><%= @topic.title %></h2>
-
-<p><%= @topic.body %></p>
-
-
-https://human-se.github.io/rails-demos-n-deets-2020/demo-devise-auth/
-
-https://r3id.medium.com/rails-snippet-delete-db-and-app-cb263d878573
-
-https://rubygems.org/
-
-
-app/controllers/application_controller.rb
-
-class ApplicationController < ActionController::Base
+### skip token
+- Add the following in app/controllers/application_controller.rb
+```ruby
   skip_before_action :verify_authenticity_token
-end
+```
 
-gem 'rack-cors', :require => 'rack/cors'
-Add a file to the config/initializers directory named cors.rb and add the following code to the new file:
-config/initializers/cors.rb
+### images
+- Save image to the project’s app/assets/images folder. - Add the image to the page using the image_tag helper method:
+```ruby
+ <%= image_tag "image-name.png", height: 300 %>
+```
 
-# Avoid CORS issues when API is called from the frontend app.
-# Handle Cross-Origin Resource Sharing (CORS) in order to accept cross-origin AJAX requests.
+## bootstrap
+- $ bundle add bootstrap
+- $ mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss
+- $ yarn add reactstrap
+- Add the following to app/assets/stylesheets/application.scss
+```ruby
+@import 'bootstrap';
+# To combat errors after importing bootstrap, I import the links on the layouts/application.html.erb
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+```
 
-# Read more: https://github.com/cyu/rack-cors
-
-Rails.application.config.middleware.insert_before 0, Rack::Cors do
-  allow do
-    origins '*'  # <- change this to allow requests from any domain while in development.
-
-    resource '*',
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
-  end
-end
-
-$ bundle 
-
-HAD TO REMOVE CORS
-
-app to production, you'll want to change the wildcard * to the URL that your frontend app is served from
-
-
-Start by downloading the image file using the link above and save it to the project’s app/assets/images folder. All files in the assets directory get compiled by the server and require Rails helper methods to reference the correct file.
-
-Add the image to the page using the image_tag helper method by adding the following code to the top of the welcome.html.erb file:
-
- <%= image_tag "quiz-bubble.png", height: 300 %>
-
-
-$ bundle add devise
-$ rails generate devise:install
-$ rails generate devise User
-$ rails db:migrate
-
-config/environments/development.rb
-
+## adding devise
+- $ bundle add devise
+- $ rails generate devise:install
+- $ rails generate devise User
+- $ rails db:migrate
+```ruby
+# Add the following to config/environments/development.rb:
 config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-config/initializers/devise.rb
-
+# Modify the config/initializers/devise.rb
 # Find this line:
 config.sign_out_via = :delete
 # And replace it with this:
 config.sign_out_via = :get
 
-
-$ bundle add bootstrap
-$ mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss
-$ yarn add reactstrap
-app/assets/stylesheets/application.scss
-
-@import 'bootstrap';
-
-We can use the before_action :authenticate_user! helper from the Devise API in our controllers to require that a user is signed in before they can use the actions we specify.
-
- 5343  gst
- 5344  git add .
- 5345  gcmsg "added styling and updated application view"
- 5346  git push origin mvc-rails
- 5347  git add .
- 5348  gcmsg "ignore node modules"
- 5349  git push origin mvc-rails
-
- Place node modules in git ignore
- Remove files from the git commit
- 5350  git rm -r --cached .
- 5351  git add .
- 5352  git commit -m "Remove node_modules folder"
- 5353  git push origin mvc-rails
-
- ## Add user name
-
- - $ rails generate migration add_username_to_user
-
- class AddUsernameToUser < ActiveRecord::Migration[6.0]
-  def change
-    # add_column :table, :column_name, :data_type
-    add_column :users, :username, :string
-  end
-end
-
-- $ rails db:migrate
+# We can use the before_action :authenticate_user! helper from the Devise API in our controllers to require that a user is signed in before they can see the show page
+  before_action :authenticate_user!, only: [:show]
+```
 
 ## devise views
 - $ rails generate devise:views
@@ -201,9 +148,33 @@ end
   config.scoped_views = true
   ```
 
+## Default forms with devise
+![Current devise log in](/app/assets/images/log_in.png)
+![Current devise sign up](/app/assets/images/sign_up.png)
+!()
 
-generate the devise views
-  Add form-group to each class field
-  class:"form-control" to last line
-  <div class="card">
-  <div class="card-header">
+## Modifying devise views
+  - Add form-group to each class field
+  - class:"form-control" to last line
+  - class="card" and class="card-header" attributes for a smoother layout
+
+## Troubleshooting
+### Place node modules in git ignore
+- Remove files from the git commit
+  - $ git rm -r --cached .
+  - $ git add .
+  - $ git commit -m "Remove node_modules folder"
+  - $ git push origin mvc-rails
+
+## Room for Improvement
+ ### Add user name
+  - $ rails generate migration add_username_to_user
+  ```ruby
+    def change
+      # add_column :table, :column_name, :data_type
+      add_column :users, :username, :string
+    end
+  ```
+  - $ rails db:migrate
+  ### Adding devise-bootstrap-views
+  ### Debugging
