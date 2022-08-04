@@ -27,13 +27,20 @@
    color: rgba(160, 150, 69, 0.894);
    text-decoration: none;
    font-weight: bold;
-   font-size: 300%;
+   font-size: 200%;
  }
  
+.alert, .notice {
+  color: rgba(160, 150, 69, 0.894);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 120%;
+}
+
  .nav-button {
-   background-color: rgb(110, 195, 133);
+   background-color: rgb(38, 48, 167);
    border: none;
-   color: rgba(86, 80, 35, 0.894);
+   color: rgba(223, 209, 104, 0.894);
    padding: 7px 14px;
    text-align: center;
    text-decoration: none;
@@ -42,7 +49,7 @@
    margin: 4px 2px;
    transition-duration: 0.4s;
    cursor: pointer;
-   border: 2px solid #4CAF50;
+   border: 2px solid #2a2984;
  }
  
  .nav-button:hover {
@@ -50,3 +57,18 @@
    border: 2px solid rgba(160, 150, 69, 0.894);
    color: black
  }
+
+ .card {
+  margin: 30vh;
+  background-color: rgba(177, 169, 103, 0.894);
+ }
+
+ .jumbotron {
+  background-color: rgba(177, 169, 103, 0.894);
+ }
+
+ ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

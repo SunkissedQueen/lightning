@@ -157,3 +157,53 @@ app/assets/stylesheets/application.scss
 
 We can use the before_action :authenticate_user! helper from the Devise API in our controllers to require that a user is signed in before they can use the actions we specify.
 
+ 5343  gst
+ 5344  git add .
+ 5345  gcmsg "added styling and updated application view"
+ 5346  git push origin mvc-rails
+ 5347  git add .
+ 5348  gcmsg "ignore node modules"
+ 5349  git push origin mvc-rails
+
+ Place node modules in git ignore
+ Remove files from the git commit
+ 5350  git rm -r --cached .
+ 5351  git add .
+ 5352  git commit -m "Remove node_modules folder"
+ 5353  git push origin mvc-rails
+
+ ## Add user name
+
+ - $ rails generate migration add_username_to_user
+
+ class AddUsernameToUser < ActiveRecord::Migration[6.0]
+  def change
+    # add_column :table, :column_name, :data_type
+    add_column :users, :username, :string
+  end
+end
+
+- $ rails db:migrate
+
+## devise views
+- $ rails generate devise:views
+```ruby
+  # ==> Scopes configuration
+  # Turn scoped views on. Before rendering "sessions/new", it will first check for
+  # "users/sessions/new". It's turned off by default because it's slower if you
+  # are using only default views.
+
+
+  # This line is commented out and set to false.
+  # config.scoped_views = false
+
+  # Update the value to be true:
+  config.scoped_views = true
+  ```
+
+
+generate the devise views
+  Add form-group to each class field
+  class:"form-control" to last line
+  <div class="card">
+  <div class="card-header">
