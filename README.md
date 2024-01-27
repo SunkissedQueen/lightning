@@ -1,4 +1,6 @@
-Thank you for viewing my application. This is a collection of my recent tech talks. In order to view more details about each topic, you will need to sign-up or log-in.  
+***(Still in progress)***  
+
+Thank you for viewing my basic application. This is a collection of my recent tech talks. In order to view more details about each topic, you will need to sign-up or log-in.  
 ![Landing page](/app/assets/images/landing.png)
 
 
