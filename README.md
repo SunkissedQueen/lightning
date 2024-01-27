@@ -1,6 +1,7 @@
 ***(Still in progress)***  
 
-Thank you for viewing my basic application. This is a collection of my recent tech talks. In order to view more details about each topic, you will need to sign-up or log-in.  
+This comprehensive tutorial is designed for novice and junior developers, aiming to teach the art of customizing a Ruby on Rails application into a full-stack marvel. The tutorial begins by creating a basic application for showcasing a list of presentations. Devise, a versatile authentication solution, plays a pivotal role, enhancing user management and security. To ensure a polished and user-friendly interface, Devise forms are thoughtfully styled using Bootstrap, offering a seamless and visually appealing experience for both developers and end-users alike.  
+
 ![Landing page](/app/assets/images/landing.png)
 
 
